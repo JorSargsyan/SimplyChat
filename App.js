@@ -7,13 +7,34 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-import ChatScreen from "./src/components/chatScreen/index";
+import ChatScreen from "./src/components/ChatScreen";
+import FriendsList from "./src/components/FriendList";
+import {createAppContainer} from "react-navigation";
+import {createStackNavigator} from "react-navigation-stack";
+
+
+const AppContainer = createAppContainer(
+  createStackNavigator({
+    FriendsList : {
+      screen : FriendsList,
+      navigationOptions : {
+        headerTitle : "Friends List"
+      }
+    },
+    ChatScreen : {
+      screen : ChatScreen
+    }
+  },{
+    headerMode: 'float',
+    headerTransitionPreset: 'fade-in-place',
+    headerLayoutPreset: 'center',
+  })
+)
+
 
 const App = () => {
   return (
-    <SafeAreaView>
-      <ChatScreen />
-    </SafeAreaView>
+      <AppContainer/>
   )
 }
 
